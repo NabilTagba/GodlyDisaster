@@ -6,6 +6,8 @@ public class ArrowManager : MonoBehaviour
 {
     public GameObject UpArrow;
     public GameObject DownArrow;
+
+    public PlanetStatus PS;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,4 +19,11 @@ public class ArrowManager : MonoBehaviour
     {
         
     }
+
+    void HumanArrow(bool UpDown)
+    {
+
+    }
+
+    //void
 }
