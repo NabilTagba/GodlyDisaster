@@ -5,6 +5,7 @@ using UnityEngine;
 public class Love : MonoBehaviour
 {
     public PlanetStatus PS;
+    public ArrowManager AM;
     int createdEntities = 0;
 
     bool loveActive = true;
@@ -13,25 +14,39 @@ public class Love : MonoBehaviour
     void Start()
     {
         PS = GameObject.Find("PlanetStatus").GetComponent<PlanetStatus>();
+        AM = GameObject.Find("Arrows").GetComponent<ArrowManager>();
         StartCoroutine(LoveCooldown());
     }
 
     private void OnTriggerStay(Collider collision)
     {
-        if((collision.gameObject.tag == "Human"|| collision.gameObject.tag == "Lion" 
-            || collision.gameObject.tag == "Chicken" || collision.gameObject.tag == "Wolf") 
+        if((collision.gameObject.tag == "Human") 
             && createdEntities < 2 && loveActive)
         {
-            loveActive = false;
-            Instantiate(collision.gameObject, collision.transform.position, Quaternion.identity);
+            AM.HumanArrow(true);
+            AM.CorruptionArrow(false);
+            DuplicateEntity(collision.gameObject);
+        }
+        else if((collision.gameObject.tag == "Lion" || collision.gameObject.tag == "Chicken" || collision.gameObject.tag == "Wolf")
+            && createdEntities < 2 && loveActive)
+        {
+            AM.AnimalArrow(true);
+            AM.CorruptionArrow(false);
+            DuplicateEntity(collision.gameObject);
+        }
+    }
 
-            createdEntities++;
+    void DuplicateEntity(GameObject dupe)
+    {
+        loveActive = false;
+        Instantiate(dupe.gameObject, dupe.transform.position, Quaternion.identity);
 
-            PS.CorruptionCounter -= 2;
-            if (PS.CorruptionCounter < 0)
-            {
-                PS.CorruptionCounter = 0;
-            }
+        createdEntities++;
+
+        PS.CorruptionCounter -= 2;
+        if (PS.CorruptionCounter < 0)
+        {
+            PS.CorruptionCounter = 0;
         }
     }
 
@@ -41,7 +56,7 @@ public class Love : MonoBehaviour
         {
             createdEntities = 0;
             loveActive = true;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.95f);
         }
     }
 }

@@ -16,6 +16,7 @@ public class Growth : MonoBehaviour
 
     public MousePosition MP;
     public PlanetStatus PS;
+    public ArrowManager AM;
 
     bool canPlaceTree = true;
     // Start is called before the first frame update
@@ -24,6 +25,8 @@ public class Growth : MonoBehaviour
         MP = GameObject.Find("MouseDot").GetComponent<MousePosition>();
         TreeParent = GameObject.Find("Trees").transform;
         PS = GameObject.Find("PlanetStatus").GetComponent<PlanetStatus>();
+        AM = GameObject.Find("Arrows").GetComponent<ArrowManager>();
+        StartCoroutine(PlaceArrow());
 
         StartCoroutine(GrowCooldown());
     }
@@ -86,6 +89,16 @@ public class Growth : MonoBehaviour
         if (PS.CorruptionCounter < 0)
         {
             PS.CorruptionCounter = 0;
+        }
+    }
+
+    IEnumerator PlaceArrow()
+    {
+        while (true)
+        {
+            AM.ForestArrow(true);
+            AM.CorruptionArrow(false);
+            yield return new WaitForSeconds(2f);
         }
     }
 }

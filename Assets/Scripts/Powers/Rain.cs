@@ -11,7 +11,7 @@ public class Rain : MonoBehaviour
     {
         PS = GameObject.Find("PlanetStatus").GetComponent<PlanetStatus>();
         AM = GameObject.Find("Arrows").GetComponent<ArrowManager>();
-        //StartCoroutine(PlaceArrow());
+        StartCoroutine(PlaceArrow());
     }
 
     private void FixedUpdate()
@@ -28,7 +28,7 @@ public class Rain : MonoBehaviour
         while (true)
         {
             AM.WaterArrow(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2f);
         }
     }
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Smite : MonoBehaviour
 {
     public PlanetStatus PS;
+    public ArrowManager AM;
     // Start is called before the first frame update
     void Start()
     {
         PS = GameObject.Find("PlanetStatus").GetComponent<PlanetStatus>();
+        AM = GameObject.Find("Arrows").GetComponent<ArrowManager>();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -16,18 +18,24 @@ public class Smite : MonoBehaviour
         //Destroy Plant
         if (collision.gameObject.tag == "Tree")
         {
+            AM.ForestArrow(false);
+            AM.CorruptionArrow(false);
             ChangeCorruption(2);
             Destroy(collision.gameObject);
         }
         //Destroy Human
         if (collision.gameObject.tag == "Human")
         {
+            AM.HumanArrow(false);
+            AM.CorruptionArrow(false);
             ChangeCorruption(2);
             Destroy(collision.gameObject);
         }
         //Destroy Animal
         if (collision.gameObject.tag == "Lion" || collision.gameObject.tag == "Chicken" || collision.gameObject.tag == "Wolf")
         {
+            AM.AnimalArrow(false);
+            AM.CorruptionArrow(false);
             ChangeCorruption(2);
             Destroy(collision.gameObject);
         }

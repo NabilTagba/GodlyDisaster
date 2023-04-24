@@ -22,32 +22,27 @@ public class ArrowManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        ArrowList.RemoveAll(x => x == null);
-        foreach (GameObject a in ArrowList)
-        {
-            a.transform.rotation = Quaternion.Euler(0, 0, 0);
-            
-        }
-    }
 
     void ArrowGeneralSpawning(bool UpDown)
     {
         if (UpDown)
         {
             NewestArrow = Instantiate(UpArrow, ArrowPos, Quaternion.identity);
+            NewestArrow.transform.SetParent(this.gameObject.transform);
+            NewestArrow.transform.localEulerAngles = new Vector3(0, 0, 0);
         }
         else
         {
             NewestArrow = Instantiate(DownArrow, ArrowPos, Quaternion.identity);
+            NewestArrow.transform.SetParent(this.gameObject.transform);
+            NewestArrow.transform.localEulerAngles = new Vector3(0, 0, 180);
         }
-
-        NewestArrow.transform.parent = this.gameObject.transform;
-        //NewestArrow.transform.rotation = Quaternion.identity;
+        
         ArrowList.Add(NewestArrow);
+        Destroy(NewestArrow.gameObject, 2.1f);
 
-        Destroy(NewestArrow.gameObject, 3);
+   
+        
     }
 
     public void HumanArrow(bool UpDown)
