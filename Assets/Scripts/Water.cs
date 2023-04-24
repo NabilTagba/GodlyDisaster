@@ -8,6 +8,7 @@ public class Water : MonoBehaviour
     float currentWaterLevel;
 
     public PlanetStatus PS;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,4 +25,6 @@ public class Water : MonoBehaviour
         transform.localScale = new Vector3(currentWaterLevel, currentWaterLevel, currentWaterLevel);
 
     }
+
+    
 }
