@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerSelected : MonoBehaviour
 {
+    public GameObject RainButton;
+    public GameObject SmiteButton;
+    public GameObject GrowthButton;
+    public GameObject LoveButton;
+
+    public GameObject LastPressedButton;
     public enum powers
     {
         Rain,
@@ -29,7 +36,8 @@ public class PowerSelected : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LastPressedButton = RainButton;
+        ButtonSize();
     }
 
     // Update is called once per frame
@@ -93,22 +101,39 @@ public class PowerSelected : MonoBehaviour
     public void SelectRain()
     {
         currentpower = powers.Rain;
+        LastPressedButton.GetComponent<Outline>().effectDistance = new Vector2(5, 5);
+        LastPressedButton = RainButton;
+        ButtonSize();
     }
     public void SelectSmite()
     {
         currentpower = powers.Smite;
+        LastPressedButton.GetComponent<Outline>().effectDistance = new Vector2(5, 5);
+        LastPressedButton = SmiteButton;
+        ButtonSize();
     }
     public void SelectGrowth()
     {
         currentpower = powers.Growth;
+        LastPressedButton.GetComponent<Outline>().effectDistance = new Vector2(5, 5);
+        LastPressedButton = GrowthButton;
+        ButtonSize();
     }
     public void SelectLove()
     {
         currentpower = powers.Love;
+        LastPressedButton.GetComponent<Outline>().effectDistance = new Vector2(5, 5);
+        LastPressedButton = LoveButton;
+        ButtonSize();
     }
     
     void ResetCoolDown()
     {
         PowersOnCooldown = false;
+    }
+
+    void ButtonSize()
+    {
+        LastPressedButton.GetComponent<Outline>().effectDistance = new Vector2(5, 10);
     }
 }
