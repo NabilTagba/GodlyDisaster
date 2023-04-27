@@ -26,6 +26,7 @@ public class PlanetStatus : MonoBehaviour
     public List<GameObject> SliderList;
 
     Color defaultColor;
+    Color defaultTotal;
 
     public List<GameObject> HumanGroups;
     public List<GameObject> ForestGroups;
@@ -37,6 +38,7 @@ public class PlanetStatus : MonoBehaviour
     void Start()
     {
         defaultColor = HumanSlider.transform.GetChild(0).GetComponentInChildren<Image>().color;
+        defaultTotal = TotalSlider.transform.GetChild(0).GetComponentInChildren<Image>().color;
         AddStartingValues();
     }
 
@@ -69,8 +71,17 @@ public class PlanetStatus : MonoBehaviour
         ForestCounter = ForestGroups.Count / 2f;
         AnimalCounter = AnimalGroups.Count * 2;
 
-        TotalPlanetHealth = (HumanCounter + WaterCounter + ForestCounter +
-            AnimalCounter + AirCounter + CorruptionCounter) / 6;
+        float numFromTotal = ((Mathf.Abs(50 - HumanCounter)) +
+            (Mathf.Abs(50 - WaterCounter)) +
+            (Mathf.Abs(50 - ForestCounter)) +
+            (Mathf.Abs(50 - AnimalCounter)) +
+            (Mathf.Abs(50 - AirCounter)) +
+            (Mathf.Abs(50 - CorruptionCounter))) / 3;
+
+        TotalPlanetHealth = 100 - numFromTotal;
+
+        //TotalPlanetHealth = (HumanCounter + WaterCounter + ForestCounter +
+        //AnimalCounter + AirCounter + CorruptionCounter) / 6;
         SlidersUpdate();
     }
 
@@ -100,6 +111,21 @@ public class PlanetStatus : MonoBehaviour
                 s.transform.GetChild(0).GetComponentInChildren<Image>().color = defaultColor;
             }
         }
+
+        //Total Status
+        if (TotalSlider.GetComponent<Slider>().value <= .25f)
+        {
+            TotalSlider.transform.GetChild(0).GetComponentInChildren<Image>().color = Color.yellow;
+        }
+        else if (TotalSlider.GetComponent<Slider>().value <= .5f)
+        {
+            TotalSlider.transform.GetChild(0).GetComponentInChildren<Image>().color = Color.yellow;
+        }
+        else
+        {
+            TotalSlider.transform.GetChild(0).GetComponentInChildren<Image>().color = defaultTotal;
+        }
         
+
     }
 }

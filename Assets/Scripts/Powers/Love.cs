@@ -43,7 +43,7 @@ public class Love : MonoBehaviour
 
         createdEntities++;
 
-        PS.CorruptionCounter -= 2;
+        PS.CorruptionCounter -= 1.5f;
         if (PS.CorruptionCounter < 0)
         {
             PS.CorruptionCounter = 0;

@@ -8,7 +8,7 @@ public class DisasterMove : MonoBehaviour
     public PlanetStatus PS;
     public Vector3 targetPos;
     float patrollingTimer;
-    float speed = 8;
+    float speed = 10;
     
 
     // Start is called before the first frame update
