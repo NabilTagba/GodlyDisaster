@@ -19,24 +19,24 @@ public class Smite : MonoBehaviour
         if (collision.gameObject.tag == "Tree")
         {
             AM.ForestArrow(false);
-            AM.CorruptionArrow(false);
-            ChangeCorruption(2);
+            AM.CorruptionArrow(true);
+            ChangeCorruption(1.5f);
             Destroy(collision.gameObject);
         }
         //Destroy Human
         if (collision.gameObject.tag == "Human")
         {
             AM.HumanArrow(false);
-            AM.CorruptionArrow(false);
-            ChangeCorruption(2);
+            AM.CorruptionArrow(true);
+            ChangeCorruption(1.5f);
             Destroy(collision.gameObject);
         }
         //Destroy Animal
         if (collision.gameObject.tag == "Lion" || collision.gameObject.tag == "Chicken" || collision.gameObject.tag == "Wolf")
         {
             AM.AnimalArrow(false);
-            AM.CorruptionArrow(false);
-            ChangeCorruption(2);
+            AM.CorruptionArrow(true);
+            ChangeCorruption(1.5f);
             Destroy(collision.gameObject);
         }
     }

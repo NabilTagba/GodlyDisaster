@@ -37,7 +37,7 @@ public class ArrowManager : MonoBehaviour
             NewestArrow.transform.SetParent(this.gameObject.transform);
             NewestArrow.transform.localEulerAngles = new Vector3(0, 0, 180);
         }
-        
+        NewestArrow.transform.localScale = new Vector3(.4f, .4f, .4f);
         ArrowList.Add(NewestArrow);
         Destroy(NewestArrow.gameObject, 2.1f);
 

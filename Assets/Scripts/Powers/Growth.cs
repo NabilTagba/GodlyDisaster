@@ -68,7 +68,7 @@ public class Growth : MonoBehaviour
             CreatedTree.transform.SetParent(TreeParent);
             PS.ForestGroups.Add(CreatedTree);
 
-            ChangeCorruption(1);
+            ChangeCorruption(.75f);
         }
         
     }

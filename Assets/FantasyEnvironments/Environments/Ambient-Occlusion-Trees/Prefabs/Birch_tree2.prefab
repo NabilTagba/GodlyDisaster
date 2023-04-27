@@ -114,4 +114,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PS: {fileID: 0}
   airToReproduce: 0.03
-  airProductionTimer: 5
+  airProductionTimer: 4.85
